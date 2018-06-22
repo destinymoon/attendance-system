@@ -159,3 +159,5 @@ public class Swagger2 {
 }
 ```
 
+> 4.swagger搭建好以后，通过 http://localhost:8080/swagger-ui.html 进行正常访问。
+
