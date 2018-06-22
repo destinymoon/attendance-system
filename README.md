@@ -8,9 +8,9 @@
 > 
 ```xml
 <dependency>
-	<groupId>com.alibaba</groupId>
-	<artifactId>druid-spring-boot-starter</artifactId>
-	<version>1.1.5</version>
+  <groupId>com.alibaba</groupId>
+  <artifactId>druid-spring-boot-starter</artifactId>
+  <version>1.1.5</version>
 </dependency>
 ```
 
@@ -24,7 +24,7 @@ spring.datasource.driver-class-name=com.mysql.jdbc.Driver
 spring.datasource.url=jdbc:mysql://localhost:3306/attendance?useUnicode=true&characterEncoding=utf-8&useSSL=false
 spring.datasource.username=
 spring.datasource.password=
->
+
 # connector pool configuration
 # 连接池启动时创建的连接数量的初始值
 spring.datasource.initialSize=5
@@ -34,7 +34,7 @@ spring.datasource.minIdle=5
 spring.datasource.maxActive=20
 # 配置获取连接等待超时的时间
 spring.datasource.maxWait=60000
->
+
 # 配置监控统计拦截的filters，用于监控SQL，wall用于防火墙
 spring.datasource.filters=stat,wall
 ```
@@ -72,8 +72,8 @@ public class DruidStatViewServlet extends StatViewServlet {
 @Bean
 @Primary
 public DataSource dataSource() {
-	DruidDataSource datasource = new DruidDataSource();
-	return datasource;
+  DruidDataSource datasource = new DruidDataSource();
+  return datasource;
 }
 ```
 
@@ -83,14 +83,14 @@ public DataSource dataSource() {
 > 
 ```xml
 <dependency>
-	<groupId>org.springframework.boot</groupId>
-	<artifactId>spring-boot-devtools</artifactId>
+  <groupId>org.springframework.boot</groupId>
+  <artifactId>spring-boot-devtools</artifactId>
 </dependency>
->
+
 <dependency>
-	<groupId>io.springfox</groupId>
-	<artifactId>springfox-swagger2</artifactId>
-	<version>2.7.0</version>
+  <groupId>io.springfox</groupId>
+  <artifactId>springfox-swagger2</artifactId>
+  <version>2.7.0</version>
 </dependency>
 ```
 > 2.配置自定义拦截器
@@ -98,18 +98,18 @@ public DataSource dataSource() {
 ```java
 @Configuration
 public class WebAppConfigurer extends WebMvcConfigurerAdapter {
->
+
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         //registry.addInterceptor(new AuthInterceptor()).addPathPatterns("/**");
         super.addInterceptors(registry);
     }
->
+
     @Override
     public void configureMessageConverters(List<HttpMessageConverter<?>> converters) {
         super.configureMessageConverters(converters);
         FastJsonHttpMessageConverter fastConverter = new FastJsonHttpMessageConverter();
->
+
         FastJsonConfig fastJsonConfig = new FastJsonConfig();
         //PrettyFormat:结果是否格式化,默认为false
         //WriteMapNullValue:是否输出值为null的字段,默认为false
@@ -119,7 +119,7 @@ public class WebAppConfigurer extends WebMvcConfigurerAdapter {
                 SerializerFeature.WriteMapNullValue,
                 SerializerFeature.DisableCircularReferenceDetect
         );
->
+
         fastConverter.setFastJsonConfig(fastJsonConfig);
         converters.add(fastConverter);
     }
@@ -138,7 +138,7 @@ public class Swagger2 {
 		//List<Parameter> pars = new ArrayList<>();
 		//tokenPar.name("x-access-token").description("令牌").modelRef(new ModelRef("string")).parameterType("header").required(false).build();
 		//pars.add(tokenPar.build());
->
+
         return new Docket(DocumentationType.SWAGGER_2)
             .select()
             .apis(RequestHandlerSelectors.basePackage("com.qianlq.attendance.controller"))
@@ -147,7 +147,7 @@ public class Swagger2 {
 			//.globalOperationParameters(pars)
             .apiInfo(apiInfo());
     }
->
+
     private ApiInfo apiInfo(){
         return new ApiInfoBuilder()
             .title("签到系统")
