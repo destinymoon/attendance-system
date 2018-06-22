@@ -66,7 +66,7 @@ public class DruidStatViewServlet extends StatViewServlet {
 
 > 5.在启动类上添加@ServletComponentScan注解
 > 
-> Druid搭建好以后，通过http://localhost:8080/druid/index.html进行正常访问。但是可能在SQL监控界面并没有监控数据，这种情况只要手动初始化Druid DataSource即可。
+> Druid搭建好以后，通过 http://localhost:8080/druid/index.html 进行正常访问。但是可能在SQL监控界面并没有监控数据，这种情况只要手动初始化Druid DataSource即可。
 >
 ```java
 @Bean
